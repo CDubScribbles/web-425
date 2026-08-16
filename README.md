@@ -1,2 +1,6 @@
-# web-425
-Repo for WEB 425 Course
+# WEB 425 Angular with TypeScript
+
+## Contributors
+
+- Richard Krasso
+- Clifford Smith
