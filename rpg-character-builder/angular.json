@@ -25,6 +25,7 @@
               }
             ],
             "styles": [
+              "src/styles/w4.css",
               "src/styles.css"
             ]
           },

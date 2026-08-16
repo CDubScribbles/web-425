@@ -1,59 +1,60 @@
-# VirtualTacoStand
+# Virtual Taco Stand
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.1.4.
+This is the starter project for the WEB 425 Virtual Taco Stand. It supplies the
+course environment, global styling library, image assets, and baseline Angular
+configuration. The application features are implemented during the weekly
+readings.
+
+## Requirements
+
+- NVM
+- Node.js 24.18.0
+- npm 11.x
+
+The project includes an `.nvmrc` file. From the project directory, select the
+supported Node.js version before installing dependencies:
+
+```bash
+nvm install
+nvm use
+npm install
+```
 
 ## Development server
 
-To start a local development server, run:
+Run `npm start`, then navigate to `http://localhost:4200/`. The application
+reloads automatically when source files change.
+
+## Production build
+
+Run `npm run build`. Build output is written to `dist/virtual-taco-stand/`.
+
+## Unit tests
+
+Run the complete test suite once with:
 
 ```bash
-ng serve
+npm test -- --watch=false
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+The project uses Angular 22.0.7 and the Angular esbuild-based application builder.
 
-## Code scaffolding
+## Course stylesheet
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+The complete visual system is contained in `src/styles/w4.css`. It is loaded
+globally through `angular.json`, in the same way a project would load a CSS
+framework such as Bootstrap.
 
-```bash
-ng generate component component-name
-```
+Component templates use short, reusable `w4-` classes for layout, cards,
+buttons, forms, navigation, and responsive behavior. Angular components do not
+contain inline style definitions, so course exercises can focus on Angular
+without requiring students to rebuild the finished design each week.
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+`src/styles.css` is reserved for optional application-specific overrides.
 
-```bash
-ng generate --help
-```
+## Image assets
 
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+The theme-matched image set is stored in `public/assets`. Photographic assets
+use optimized WebP files for responsive performance, while the wordmark and
+favicon use scalable SVG artwork so the brand remains sharp at every viewport
+size.
