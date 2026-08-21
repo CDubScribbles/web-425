@@ -17,11 +17,11 @@ import { RouterOutlet } from '@angular/router';
         </div>
         <nav class="w4-navbar" aria-label="Primary navigation">
           <div class="w4-container w4-nav">
-            <a class="w4-nav-link active" href="/">Home</a>
-            <span class="w4-nav-link" aria-disabled="true">Menu</span>
-            <span class="w4-nav-link" aria-disabled="true">Order</span>
-            <span class="w4-nav-link" aria-disabled="true">Daily Specials</span>
-            <span class="w4-nav-link" aria-disabled="true">Feedback</span>
+            <a class="w4-nav-link" href="/">Home</a>
+            <a class="w4-nav-link" href="/menu">Menu</a>
+            <a class="w4-nav-link" href="/order">Order</a>
+            <a class="w4-nav-link" href="/daily-specials">Daily Specials</a>
+            <a class="w4-nav-link" href="/feedback">Feedback</a>
           </div>
         </nav>
       </header>
@@ -41,10 +41,10 @@ import { RouterOutlet } from '@angular/router';
           </div>
           <nav class="w4-footer-nav" aria-label="Footer navigation">
             <a href="/">Home</a>
-            <span>Menu</span>
-            <span>Order</span>
-            <span>Daily Specials</span>
-            <span>Feedback</span>
+            <a href="/menu">Menu</a>
+            <a href="/order">Order</a>
+            <a href="/daily-specials">Daily Specials</a>
+            <a href="/feedback">Feedback</a>
           </nav>
           <p class="w4-footer-copyright">
             &copy; {{ currentYear }} Virtual Taco Stand

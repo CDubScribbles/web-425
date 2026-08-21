@@ -1,14 +1,23 @@
-<header>
-  <h1>RPG Character Builder</h1>
-  <nav>
-    <a routerLink="/">Home</a>
+<header class="w4-header">
+  <div class="w4-container w4-header-inner">
+    <h1 class="w4-sr-only">Hello, {{ title() }}</h1>
+    <p class="w4-brand">RPG Character Builder</p>
+  </div>
+  <nav class="w4-navbar" aria-label="Primary navigation">
+    <div class="w4-container w4-nav">
+      <a class="w4-nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a>
+      <a class="w4-nav-link" routerLink="/classes" routerLinkActive="active">Classes</a>
+      <a class="w4-nav-link" routerLink="/about" routerLinkActive="active">About</a>
+    </div>
   </nav>
 </header>
 
-<main>
+<main id="main-content" class="w4-container w4-main">
   <router-outlet />
 </main>
 
-<footer>
-  <p>WEB 425 &middot; RPG Character Builder</p>
+<footer class="w4-footer">
+  <div class="w4-container w4-footer-inner">
+    <p class="w4-footer-copyright">WEB 425 &middot; RPG Character Builder</p>
+  </div>
 </footer>
