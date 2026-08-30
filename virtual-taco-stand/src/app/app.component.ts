@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, RouterLink, RouterLinkActive],
   template: `
     <div class="w4-shell">
       <header class="w4-header">
@@ -17,11 +17,11 @@ import { RouterOutlet } from '@angular/router';
         </div>
         <nav class="w4-navbar" aria-label="Primary navigation">
           <div class="w4-container w4-nav">
-            <a class="w4-nav-link" href="/">Home</a>
-            <a class="w4-nav-link" href="/menu">Menu</a>
-            <a class="w4-nav-link" href="/order">Order</a>
-            <a class="w4-nav-link" href="/daily-specials">Daily Specials</a>
-            <a class="w4-nav-link" href="/feedback">Feedback</a>
+            <a class="w4-nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a>
+            <a class="w4-nav-link" routerLink="/menu" routerLinkActive="active">Menu</a>
+            <a class="w4-nav-link" routerLink="/order" routerLinkActive="active">Order</a>
+            <a class="w4-nav-link" routerLink="/daily-specials" routerLinkActive="active">Daily Specials</a>
+            <a class="w4-nav-link" routerLink="/feedback" routerLinkActive="active">Feedback</a>
           </div>
         </nav>
       </header>
