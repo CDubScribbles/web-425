@@ -5,6 +5,8 @@ import { ClassDetailComponent } from './class-detail/class-detail.component';
 import { AboutComponent } from './about/about.component';
 import { AbilityRollerComponent } from './ability-roller/ability-roller.component';
 import { CharacterBuilderComponent } from './character-builder/character-builder.component';
+import { SigninComponent } from './signin/signin.component';
+import { authGuard } from './auth.guard';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -16,5 +18,6 @@ export const routes: Routes = [
     data: { title: 'About RPG Character Builder' }
   },
   { path: 'roll/:sides', component: AbilityRollerComponent },
-  { path: 'builder', component: CharacterBuilderComponent }
+  { path: 'builder', component: CharacterBuilderComponent, canActivate: [authGuard] },
+  { path: 'signin', component: SigninComponent }
 ];

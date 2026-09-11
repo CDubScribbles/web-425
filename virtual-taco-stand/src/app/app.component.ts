@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
+import { AuthService } from './auth.service';
 
 @Component({
   selector: 'app-root',
@@ -14,6 +16,17 @@ import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
                  alt="Virtual Taco Stand"
                  class="w4-brand-image" />
           </a>
+          <div class="w4-account">
+            @if (email) {
+              <div class="w4-account-copy">
+                <span class="w4-account-label">Signed in as</span>
+                <span class="w4-account-value">{{ email }}</span>
+              </div>
+              <button type="button" class="w4-btn" (click)="signout()">Sign Out</button>
+            } @else {
+              <a class="w4-btn" routerLink="/signin">Sign In</a>
+            }
+          </div>
         </div>
         <nav class="w4-navbar" aria-label="Primary navigation">
           <div class="w4-container w4-nav">
@@ -54,7 +67,23 @@ import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
     </div>
   `
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+  private readonly authService = inject(AuthService);
+  private readonly cookieService = inject(CookieService);
+
   readonly title = 'virtual-taco-stand';
   readonly currentYear = new Date().getFullYear();
+  email?: string;
+
+  ngOnInit(): void {
+    this.authService.getAuthState().subscribe(isAuthenticated => {
+      this.email = isAuthenticated
+        ? this.cookieService.get('session_user')
+        : undefined;
+    });
+  }
+
+  signout(): void {
+    this.authService.signout();
+  }
 }

@@ -5,6 +5,7 @@ import { OrderComponent } from './order/order.component';
 import { DailySpecialsComponent } from './daily-specials/daily-specials.component';
 import { FeedbackComponent } from './feedback/feedback.component';
 import { SigninComponent } from './signin/signin.component';
+import { authGuard } from './auth.guard';
 
 export const routes: Routes = [
   {
@@ -21,7 +22,8 @@ export const routes: Routes = [
   },
   {
     path: 'order',
-    component: OrderComponent
+    component: OrderComponent,
+    canActivate: [authGuard]
   },
   {
     path: 'daily-specials',
