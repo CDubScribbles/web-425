@@ -15,9 +15,11 @@ export class AuthService {
     { empId: 1, email: 'wizardlywand@hogwarts.com', password: 'Alohomora123' },
   ];
 
-  private readonly authState = new BehaviorSubject<boolean>(false);
   private readonly cookieService = inject(CookieService);
   private readonly router = inject(Router);
+   private readonly authState = new BehaviorSubject<boolean>(
+  this.cookieService.check('session_user')
+  );
 
   getAuthState() {
     return this.authState.asObservable();

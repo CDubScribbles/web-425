@@ -15,6 +15,7 @@ import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
           <a class="w4-nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a>
           <a class="w4-nav-link" routerLink="/classes" routerLinkActive="active">Classes</a>
           <a class="w4-nav-link" routerLink="/builder" routerLinkActive="active">Builder</a>
+          <a class="w4-nav-link" routerLink="/profile" routerLinkActive="active">Profile</a>
           <a class="w4-nav-link" routerLink="/roll/20" routerLinkActive="active">Roll</a>
           <a class="w4-nav-link" routerLink="/about" routerLinkActive="active">About</a>
         </div>
