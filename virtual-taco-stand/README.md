@@ -1,60 +1,117 @@
-# Virtual Taco Stand
+# Virtual Taco Stand — Weeks 7–9 Starter
 
-This is the starter project for the WEB 425 Virtual Taco Stand. It supplies the
-course environment, global styling library, image assets, and baseline Angular
-configuration. The application features are implemented during the weekly
-readings.
+Virtual Taco Stand is the shared starter application for Weeks 7, 8, and 9 of
+the course. It gives students a consistent Angular codebase and business domain
+for the exercises completed across those weeks.
 
-## Requirements
+The application is a responsive, dark-themed virtual restaurant where users
+can browse a taco menu, build an order, review an order summary, leave feedback,
+and sign in. It also includes routing, authentication support, route guards,
+cookie-based state, unit tests, course styling, and optimized image assets.
 
-- NVM
-- Node.js 24.18.0
-- npm 11.x
+The folder is named `week7-starter` because this is the starting codebase for
+the multi-week sequence. The internal Angular project name remains
+`virtual-taco-stand`, which is also the name used for its production build
+directory.
 
-The project includes an `.nvmrc` file. From the project directory, select the
-supported Node.js version before installing dependencies:
+## Course use
+
+- Use this project as the starting point for the Week 7 coursework.
+- Continue using the assigned starter state for the related Week 8 and Week 9
+  coursework.
+- Follow the instructions for each week without changing the dependency
+  versions or replacing the lockfile.
+
+## Technology versions
+
+- Angular, Angular CLI, and Angular build tools: 22.0.7
+- Node.js: 24.18.0 through `.nvmrc` (`>=24.15.0 <25` supported)
+- npm: 11.16.0 used for the lockfile (npm 11 or newer required)
+- TypeScript: 6.0.3
+- RxJS: 7.8.2
+- ngx-cookie-service: 22.0.0
+- Karma: 6.4.4 with Jasmine and Firefox
+
+## Prerequisites
+
+Install the following software before setting up the application:
+
+1. [Git](https://git-scm.com/downloads) to clone the repository.
+2. [NVM](https://github.com/nvm-sh/nvm#installing-and-updating) to install and
+   select the required Node.js version.
+3. [Firefox](https://www.mozilla.org/firefox/) to run the Karma test suite.
+
+You do not need to install Angular CLI globally. The project installs and uses
+its own CLI through the npm scripts.
+
+## Dependency policy
+
+Always use `npm ci` to install this project's dependencies. Do not run
+`npm install`, `npm update`, or `npm audit fix`. Do not add, remove, upgrade, or
+otherwise modify dependencies in `package.json` or `package-lock.json`. The
+course project depends on the exact, tested versions recorded in the lockfile.
+
+## Install the application
+
+From the repository root, run:
 
 ```bash
+cd week7-starter
 nvm install
 nvm use
-npm install
+npm ci
 ```
 
-## Development server
+`nvm install` reads `.nvmrc` and installs Node.js 24.18.0 when necessary.
+`npm ci` installs the exact dependency versions recorded in
+`package-lock.json`.
 
-Run `npm start`, then navigate to `http://localhost:4200/`. The application
-reloads automatically when source files change.
-
-## Production build
-
-Run `npm run build`. Build output is written to `dist/virtual-taco-stand/`.
-
-## Unit tests
-
-Run the complete test suite once with:
+## Start the development server
 
 ```bash
-npm test -- --watch=false
+npm start
 ```
 
-The project uses Angular 22.0.7 and the Angular esbuild-based application builder.
+Open `http://localhost:4200/` in a browser. The development server watches the
+source files and reloads the application after changes.
 
-## Course stylesheet
+Stop the server with `Ctrl+C`.
 
-The complete visual system is contained in `src/styles/w4.css`. It is loaded
-globally through `angular.json`, in the same way a project would load a CSS
-framework such as Bootstrap.
+## Build the application
 
-Component templates use short, reusable `w4-` classes for layout, cards,
-buttons, forms, navigation, and responsive behavior. Angular components do not
-contain inline style definitions, so course exercises can focus on Angular
-without requiring students to rebuild the finished design each week.
+Create an optimized production build with:
 
-`src/styles.css` is reserved for optional application-specific overrides.
+```bash
+npm run build
+```
 
-## Image assets
+The generated files are written to `dist/virtual-taco-stand/`.
 
-The theme-matched image set is stored in `public/assets`. Photographic assets
-use optimized WebP files for responsive performance, while the wordmark and
-favicon use scalable SVG artwork so the brand remains sharp at every viewport
-size.
+To continuously rebuild with the development configuration, run:
+
+```bash
+npm run watch
+```
+
+## Run the tests
+
+Run the complete test suite once in headless Firefox:
+
+```bash
+npm test -- --watch=false --browsers=FirefoxHeadless
+```
+
+For interactive watch mode, run `npm test`. Karma opens Firefox and reruns the
+tests when source or specification files change.
+
+## Application structure
+
+- `src/app/app.routes.ts` defines the application routes.
+- `src/app/auth.service.ts` and `src/app/auth.guard.ts` provide authentication
+  and protected-route behavior.
+- `src/app/menu/` displays the available menu.
+- `src/app/order/` and `src/app/order-summary/` implement the ordering flow.
+- `src/app/feedback/` contains the feedback experience.
+- `src/styles/w4.css` contains the reusable course visual system.
+- `public/assets/` contains the optimized application artwork.
+- `angular.json` contains the build, development-server, and test targets.

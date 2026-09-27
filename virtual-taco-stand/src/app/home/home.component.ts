@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-home',
+  standalone: true,
+  imports: [],
   template: `
     <section class="w4-hero">
       <div>
@@ -12,15 +14,8 @@ import { Component } from '@angular/core';
           satisfying food around the clock in the heart of downtown.
         </p>
         <div class="w4-actions">
-          <a href="#"
-             class="w4-btn w4-btn-primary"
-             aria-disabled="true">Start an Order
-          </a>
-          <a href="#"
-             class="w4-link-arrow"
-             aria-disabled="true">
-            Explore the Menu <span aria-hidden="true">→</span>
-          </a>
+          <a href="/order" class="w4-btn w4-btn-primary">Start an Order</a>
+          <a href="/menu" class="w4-link-arrow">Explore the Menu <span aria-hidden="true">→</span></a>
         </div>
       </div>
       <div class="w4-hero-media">
@@ -51,11 +46,12 @@ import { Component } from '@angular/core';
           sure to please your taste buds. Come on down and see us!
         </p>
       </div>
+
       <div class="w4-grid w4-grid-3">
         <article class="w4-card w4-card-media">
           <img
             src="/assets/downtown-stand.webp"
-            alt="A warmly lit taco stand serving customers on a downtown street"
+            alt="A warmly lit taco stand serving customers on a downtown street at night"
             width="1200"
             height="800"
             loading="lazy"
@@ -65,12 +61,12 @@ import { Component } from '@angular/core';
             <p class="w4-kicker">01</p>
             <h3>In the heart of downtown</h3>
             <p class="w4-card-text">
-              Fresh, vibrant, and bursting with authentic Mexican flavor,
-              our tacos are a downtown must-try. Every bite tells a
-              story of tradition and taste.
+              Fresh, vibrant, and bursting with authentic Mexican flavor, our tacos
+              are a downtown must-try. Every bite tells a story of tradition and taste.
             </p>
           </div>
         </article>
+
         <article class="w4-card w4-card-media">
           <img
             src="/assets/taco-craft.webp"
@@ -89,10 +85,11 @@ import { Component } from '@angular/core';
             </p>
           </div>
         </article>
+
         <article class="w4-card w4-card-media">
           <img
             src="/assets/taco-variety.webp"
-            alt="An overhead assortment of six freshly prepared tacos with salsa"
+            alt="An overhead assortment of six freshly prepared tacos with salsa and lime"
             width="1200"
             height="675"
             loading="lazy"
@@ -102,8 +99,8 @@ import { Component } from '@angular/core';
             <p class="w4-kicker">03</p>
             <h3>A flavor for everyone</h3>
             <p class="w4-card-text">
-              Every taco is made with fresh ingredients and bold flavors.
-              They are perfect for sharing—or keeping all to yourself.
+              Every taco is made with fresh ingredients and bold flavors. They are
+              perfect for sharing—or keeping all to yourself.
             </p>
           </div>
         </article>
@@ -114,15 +111,9 @@ import { Component } from '@angular/core';
       <div>
         <p class="w4-eyebrow">Planning something special?</p>
         <h2>Having a party? We cater.</h2>
-        <p>
-          Give us a call and we will be happy to help with your catering needs.
-        </p>
+        <p>Give us a call and we will be happy to help with your catering needs.</p>
       </div>
-      <a href="#"
-         class="w4-link-arrow"
-         aria-disabled="true">
-        Get in touch <span aria-hidden="true">→</span>
-      </a>
+      <a href="/feedback" class="w4-link-arrow">Get in touch <span aria-hidden="true">→</span></a>
     </aside>
   `
 })

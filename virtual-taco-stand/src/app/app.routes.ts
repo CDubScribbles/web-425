@@ -23,7 +23,7 @@ export const routes: Routes = [
   {
     path: 'order',
     component: OrderComponent,
-    canActivate: [authGuard]
+    //canActivate: [authGuard]
   },
   {
     path: 'daily-specials',

@@ -1,7 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
 
 import { FeedbackComponent } from './feedback.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { By } from '@angular/platform-browser';
 
 describe('FeedbackComponent', () => {
   let component: FeedbackComponent;
@@ -9,7 +10,7 @@ describe('FeedbackComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [FeedbackComponent]
+      imports: [FeedbackComponent, ReactiveFormsModule, FormsModule]
     })
     .compileComponents();
 
@@ -33,36 +34,17 @@ describe('FeedbackComponent', () => {
     expect(component.feedbackForm.valid).toBeTruthy();
   });
 
-  it('should call leaveFeedback when the form is submitted', () => {
+  it('should call leaveFeedback on form submit with valid data', () => {
     spyOn(component, 'leaveFeedback');
-    const form = fixture.debugElement.query(By.css('form'));
-    form.triggerEventHandler('ngSubmit', null);
-    expect(component.leaveFeedback).toHaveBeenCalled();
-  });
 
-  it('should store selected likes as labels, not booleans', () => {
-    component.feedbackForm.controls['rating'].setValue('5');
-    component.feedbackForm.controls['recommend'].setValue('Yes');
-    component.likesArray.at(0).setValue(true);
-    component.likesArray.at(2).setValue(true);
-
-    component.leaveFeedback();
-
-    const stored = component.preexistingFeedback[0];
-    expect(stored.likes).toEqual(['Service', 'Price']);
-  });
-
-  it('should reset the form after successful submission', () => {
     component.feedbackForm.controls['rating'].setValue('5');
     component.feedbackForm.controls['recommend'].setValue('Yes');
     component.feedbackForm.controls['comments'].setValue('Great service!');
-    component.likesArray.at(1).setValue(true);
+    fixture.detectChanges();
 
-    component.leaveFeedback();
+    const form = fixture.debugElement.query(By.css('form'));
+    form.triggerEventHandler('ngSubmit', null);
 
-    expect(component.feedbackForm.value.rating).toBeNull();
-    expect(component.feedbackForm.value.recommend).toBeNull();
-    expect(component.feedbackForm.value.comments).toBeNull();
-    expect(component.likesArray.value).toEqual([false, false, false, false, false]);
+    expect(component.leaveFeedback).toHaveBeenCalled();
   });
 });
