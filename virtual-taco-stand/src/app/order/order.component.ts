@@ -83,7 +83,7 @@ import { OrderSummaryComponent } from '../order-summary/order-summary.component'
               <p>Items and totals update as you build.</p>
             </div>
           </div>
-          <app-order-summary [order]="order" />
+          <app-order-summary [order]="order" (removeTaco)="onRemoveTaco($event)" />
         </div>
       </div>
     </section>
@@ -142,6 +142,14 @@ export class OrderComponent {
       console.error('Taco not found in the list of available tacos.', this.selectedTacoId);
     }
   }
+
+  onRemoveTaco(index: number): void {
+  this.order = {
+    ...this.order,
+    tacos: this.order.tacos.filter((_, i) => i !== index)
+  };
+  this.orderUpdated.emit(this.order);
+}
 
   resetForm() {
     if (this.tacos.length > 0) {

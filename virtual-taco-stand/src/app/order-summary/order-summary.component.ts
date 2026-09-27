@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, signal } from '@angular/core';
+import { Component, EventEmitter, Input, Output, signal } from '@angular/core';
 import { Order } from '../order/order.component';
 
 @Component({
@@ -10,13 +10,18 @@ import { Order } from '../order/order.component';
     <h1 class="w4-sr-only">Order Summary</h1>
     @if (order.tacos.length > 0) {
       <ul class="w4-summary-list">
-        @for (taco of order.tacos; track $index) {
+        @for (taco of order.tacos; track $index; let i = $index) {
           <li>
             <div class="w4-item-heading">
-              <strong>{{ taco.quantity }}x {{ taco.name }}</strong>
+              <strong>Item {{ i + 1 }}: {{ taco.name }}</strong>
             </div>
             <div class="w4-detail-list">
-              <p>Price per taco: <span>{{ taco.price | currency:'USD':'symbol':'1.2-2' }}</span></p>
+              <p>Quantity: <span>{{ taco.quantity }}</span></p>
+              <p>Unit price: <span>{{ taco.price | currency:'USD':'symbol':'1.2-2' }}</span></p>
+              <p>
+                Subtotal:
+                <span>{{ (taco.price * (taco.quantity ?? 1)) | currency:'USD':'symbol':'1.2-2' }}</span>
+              </p>
               @if (taco.noOnions) {
                 <p>No onions</p>
               }
@@ -24,6 +29,13 @@ import { Order } from '../order/order.component';
                 <p>No cilantro</p>
               }
             </div>
+            <button
+              type="button"
+              class="w4-btn w4-btn-secondary"
+              (click)="removeTaco.emit(i)"
+            >
+              Remove Taco
+            </button>
           </li>
         }
       </ul>
@@ -39,18 +51,26 @@ import { Order } from '../order/order.component';
   `
 })
 export class OrderSummaryComponent {
-  private readonly orderState = signal<Order>({ orderId: 0, tacos: [] });
+  private readonly orderState = signal<Order>({
+    orderId: 0,
+    tacos: []
+  });
 
   @Input()
   set order(value: Order) {
     this.orderState.set(value);
   }
 
-  get order() {
+  get order(): Order {
     return this.orderState();
   }
 
-  getTotal() {
-    return this.order.tacos.reduce((acc, taco) => acc + (taco.price * (taco.quantity ?? 1)), 0);
+  @Output() removeTaco = new EventEmitter<number>();
+
+  getTotal(): number {
+    return this.order.tacos.reduce(
+      (total, taco) => total + taco.price * (taco.quantity ?? 1),
+      0
+    );
   }
 }
