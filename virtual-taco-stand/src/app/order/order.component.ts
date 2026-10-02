@@ -5,6 +5,7 @@ export interface Taco {
   noOnions?: boolean;
   noCilantro?: boolean;
   quantity?: number;
+  lineId?: number;
 }
 
 export interface Order {
@@ -96,6 +97,7 @@ export class OrderComponent {
   quantity: number;
   noOnions = false;
   noCilantro = false;
+  nextLineId: number;
   orderTotal: number;
 
   @Output() orderUpdated = new EventEmitter<Order>();
@@ -118,6 +120,7 @@ export class OrderComponent {
     this.selectedTacoId = this.tacos[0].id;
     this.quantity = 1;
     this.orderTotal = 0;
+    this.nextLineId = 1;
   }
 
   addToOrder() {
@@ -132,7 +135,8 @@ export class OrderComponent {
         price: selectedTaco.price,
         noOnions: this.noOnions,
         noCilantro: this.noCilantro,
-        quantity: this.quantity
+        quantity: this.quantity,
+        lineId: this.nextLineId++
       };
 
       this.order = { ...this.order, tacos: [...this.order.tacos, tacoToAdd] };
@@ -143,13 +147,13 @@ export class OrderComponent {
     }
   }
 
-  onRemoveTaco(index: number): void {
+  onRemoveTaco(lineId: number): void {
   this.order = {
     ...this.order,
-    tacos: this.order.tacos.filter((_, i) => i !== index)
+    tacos: this.order.tacos.filter(taco => taco.lineId !== lineId)
   };
   this.orderUpdated.emit(this.order);
-}
+  }
 
   resetForm() {
     if (this.tacos.length > 0) {

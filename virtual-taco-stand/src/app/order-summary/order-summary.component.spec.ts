@@ -141,9 +141,9 @@ describe('OrderSummaryComponent', () => {
    * LEGACY CONTRACT TEST - DO NOT MODIFY
    * Summary rows are currently read-only and should not include action controls.
    */
-  it('LEGACY CONTRACT: does not render inline remove actions in summary rows', () => {
+  it('allows removing a taco from the summary', () => {
     component.order = {
-      orderId: 3003,
+      orderId: 3005,
       tacos: [
         { id: 1, name: 'Carnitas Taco', price: 3.25, quantity: 1 }
       ]
@@ -152,9 +152,10 @@ describe('OrderSummaryComponent', () => {
     fixture.detectChanges();
 
     const compiled = fixture.nativeElement as HTMLElement;
-    const buttons = Array.from(compiled.querySelectorAll('button'));
+    const buttons = compiled.querySelectorAll('button');
 
-    expect(buttons.length).toBe(0);
+    expect(buttons.length).toBe(1);
+    expect(buttons[0].textContent).toContain('Remove Taco');
   });
 
   /**

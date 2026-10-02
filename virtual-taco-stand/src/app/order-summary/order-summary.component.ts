@@ -12,27 +12,21 @@ import { Order } from '../order/order.component';
       <ul class="w4-summary-list">
         @for (taco of order.tacos; track $index; let i = $index) {
           <li>
-            <div class="w4-item-heading">
-              <strong>Item {{ i + 1 }}: {{ taco.name }}</strong>
-            </div>
-            <div class="w4-detail-list">
-              <p>Quantity: <span>{{ taco.quantity }}</span></p>
-              <p>Unit price: <span>{{ taco.price | currency:'USD':'symbol':'1.2-2' }}</span></p>
-              <p>
-                Subtotal:
-                <span>{{ (taco.price * (taco.quantity ?? 1)) | currency:'USD':'symbol':'1.2-2' }}</span>
-              </p>
-              @if (taco.noOnions) {
-                <p>No onions</p>
-              }
-              @if (taco.noCilantro) {
-                <p>No cilantro</p>
-              }
-            </div>
+            <strong>{{ taco.quantity }}x {{ taco.name }}</strong>
+            <p>
+              Price per taco:
+              <span>{{ taco.price | currency:'USD':'symbol':'1.2-2' }}</span>
+            </p>
+            @if (taco.noOnions) {
+              <p>No onions</p>
+            }
+            @if (taco.noCilantro) {
+              <p>No cilantro</p>
+            }
             <button
               type="button"
               class="w4-btn w4-btn-secondary"
-              (click)="removeTaco.emit(i)"
+              (click)="removeTaco.emit(taco.lineId!)"
             >
               Remove Taco
             </button>
